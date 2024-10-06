@@ -1,0 +1,6 @@
+.env
+testgit
+.vscode
+.DS_Store
+
+tmp
