@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: christianfehlinger/nginx:latest  # Use the latest version of your image
+    ports:
+      - "8080:80"  # Map port 80 of the container to port 8080 on the host
+    environment:
+      - VERBOSEPOD=true
+    restart: always
