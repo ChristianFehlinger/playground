@@ -16,11 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get current timestamp
-        id: date
-        run: |
-          echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -36,10 +31,8 @@ jobs:
         run: |
           DOCKERTAG=$(date +%Y%m%d%H%M%S)
           docker build -t christianfehlinger/nginx:$DOCKERTAG -t christianfehlinger/nginx:latest docker/nginx
-          echo "::set-output name=dockertag::$DOCKERTAG"
           echo "DOCKERTAG=$DOCKERTAG" >> "$GITHUB_ENV"
 
-      # Push the image to Docker Hub (optional)
       - name: Push Docker image
         run: |
           docker push christianfehlinger/nginx:latest
